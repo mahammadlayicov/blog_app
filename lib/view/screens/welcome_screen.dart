@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/config/app_router.gr.dart';
+import 'package:news_app/config/contex_extension.dart';
 import 'package:news_app/view/widgets/button_widget.dart';
 
 import '../../constant/app_color.dart';
@@ -30,9 +31,7 @@ class WelcomeScreen extends StatelessWidget {
                       .headlineMedium!
                       .copyWith(color: blackPrimary),
                 ),
-                SizedBox(
-                  height: 30,
-                ),
+                context.emptyWidgetHeight,
                 Container(
                   width: MediaQuery.of(context).size.width / 2,
                   child: Text(
@@ -45,7 +44,7 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 15),
+                  margin: EdgeInsets.symmetric(horizontal: context.lowValue),
                   child: GestureDetector(
                     onTap: () {
                       AutoRouter.of(context).push(LoginRoute());

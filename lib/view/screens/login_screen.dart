@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/config/app_router.gr.dart';
+import 'package:news_app/config/contex_extension.dart';
 import 'package:news_app/constant/app_color.dart';
 import 'package:news_app/constant/string_constant.dart';
 import 'package:news_app/provider/passwordTextfieldProvider.dart';
@@ -20,124 +21,118 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          margin: EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            children: [
-              Expanded(
-                flex: 2,
-                child: TwoTextWidget(
-                    description: StringConstant.loginWelcomeDetail,
-                    title: StringConstant.loginWelcomeBack),
-              ),
-              Expanded(
-                  flex: 3,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextFieldMailWidget(
-                        prefixIcon: Icons.mail_outline_outlined,
-                        title: StringConstant.emailText,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: context.mediumValue),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 2,
+              child: TwoTextWidget(
+                  description: StringConstant.loginWelcomeDetail,
+                  title: StringConstant.loginWelcomeBack),
+            ),
+            Expanded(
+                flex: 3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextFieldMailWidget(
+                      prefixIcon: Icons.mail_outline_outlined,
+                      title: StringConstant.emailText,
+                    ),
+                    TextFieldPasswordWidget(
+                      suffixIcon2: Icons.visibility_off_outlined,
+                      prefixIcon: Icons.lock_outline_rounded,
+                      suffixIcon: Icons.visibility_outlined,
+                      title: StringConstant.passwordText,
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          AutoRouter.of(context).push(ForgotPasswordRoute());
+                        },
+                        child: Text(StringConstant.forgetPasswordText,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(color: greyPrimary)),
                       ),
-                      TextFieldPasswordWidget(
-                        suffixIcon2: Icons.visibility_off_outlined,
-                        prefixIcon: Icons.lock_outline_rounded,
-                        suffixIcon: Icons.visibility_outlined,
-                        title: StringConstant.passwordText,
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: GestureDetector(
-                          onTap: () {
-                            AutoRouter.of(context).push(ForgotPasswordRoute());
-                          },
-                          child: Text(StringConstant.forgetPasswordText,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(color: greyPrimary)),
-                        ),
-                      )
-                    ],
-                  )),
-              Flexible(
+                    )
+                  ],
+                )),
+            Flexible(
+              flex: 2,
+              child: GestureDetector(
+                  onTap: () {
+                    AutoRouter.of(context).push(FavoriteTopicsRoute());
+                  },
+                  child: ButtonWidget(title: StringConstant.signIn)),
+            ),
+            Expanded(
+                flex: 1,
+                child: Center(
+                  child: Text(
+                    "or",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(color: greyPrimary),
+                  ),
+                )),
+            Expanded(
                 flex: 2,
-                child: GestureDetector(
-                    onTap: () {
-                      AutoRouter.of(context).push(FavoriteTopicsRoute());
-                    },
-                    child: ButtonWidget(title: StringConstant.buttonLoginText)),
-              ),
-              Expanded(
-                  flex: 1,
-                  child: Center(
-                    child: Text(
-                      "or",
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SocialSignInButton(
+                      icon: Icons.facebook,
+                      text: 'Sign In with Google',
+                      color: Colors.white,
+                      textColor: greyDarker,
+                      borderColor: greyLight,
+                      imagePath: 'assets/images/google-logo.png',
+                      onPressed: () {},
+                    ),
+                    SocialSignInButton(
+                      icon: Icons.facebook,
+                      text: 'Sign In with Facebook',
+                      color: Colors.white,
+                      textColor: greyDarker,
+                      borderColor: greyLight,
+                      imagePath: 'assets/images/facebook-logo.png',
+                      onPressed: () {},
+                    ),
+                  ],
+                )),
+            Expanded(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      StringConstant.loginEndText,
                       style: Theme.of(context)
                           .textTheme
                           .bodyLarge!
-                          .copyWith(color: greyPrimary),
+                          .copyWith(color: blackLighter),
                     ),
-                  )),
-              Expanded(
-                  flex: 2,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SocialSignInButton(
-                        icon: Icons.facebook,
-                        text: 'Sign In with Google',
-                        color: Colors.white,
-                        textColor: greyDarker,
-                        borderColor: greyLight,
-                        imagePath: 'assets/images/google-logo.png',
-                        onPressed: () {},
+                    GestureDetector(
+                      onTap: () {
+                        AutoRouter.of(context).push(RegisterRoute());
+                      },
+                      child: Text(
+                        StringConstant.singUp,
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: blackPrimary, fontWeight: FontWeight.bold),
                       ),
-                      SocialSignInButton(
-                        icon: Icons.facebook,
-                        text: 'Sign In with Facebook',
-                        color: Colors.white,
-                        textColor: greyDarker,
-                        borderColor: greyLight,
-                        imagePath: 'assets/images/facebook-logo.png',
-                        onPressed: () {},
-                      ),
-                    ],
-                  )),
-              Expanded(
-                  flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        StringConstant.loginEndText,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: blackLighter),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          AutoRouter.of(context).push(RegisterRoute());
-                        },
-                        child: Text(
-                          " Sing Up",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(
-                                  color: blackPrimary,
-                                  fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
-                  ))
-            ],
-          ),
+                    )
+                  ],
+                ))
+          ],
         ),
       ),
     );

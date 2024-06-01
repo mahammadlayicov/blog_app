@@ -1,6 +1,8 @@
 class StringConstant {
-  static const appName = "Nuntuim";
+  static const appName = "Nuntium";
   static const nextText = "Next";
+  static const signIn = "Sign In";
+  static const singUp = "Sign Up";
   static const onboardingTitle = "First to know";
   static const onboardingDetail =
       "All news in one place, be the first to know last news";
@@ -12,7 +14,6 @@ class StringConstant {
   static const passwordText = 'Password';
   static const forgetPasswordText = 'Forgot Password?';
   static const buttonWelcomeText = "Get Started";
-  static const buttonLoginText = "Sing In";
   static const loginEndText = "Don't have an account?";
   static const continueToApp = 'Continue to app';
   static const forgotScreenTitle = "Forgot Password 🤔";

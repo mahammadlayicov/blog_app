@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:news_app/config/app_router.gr.dart';
+import 'package:news_app/config/contex_extension.dart';
 import 'package:news_app/constant/string_constant.dart';
 import 'package:news_app/view/screens/login_screen.dart';
 import 'package:news_app/view/screens/verification_screen.dart';
@@ -26,9 +27,13 @@ class ForgotPasswordScreen extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           children: [
-            TwoTextWidget(
-                title: StringConstant.forgotScreenTitle,
-                description: StringConstant.forgotScreenDescription),
+            Expanded(
+              flex: 2,
+              child: TwoTextWidget(
+                  title: StringConstant.forgotScreenTitle,
+                  description: StringConstant.forgotScreenDescription),
+            ),
+            context.emptyWidgetHeight,
             TextFieldMailWidget(
               prefixIcon: Icons.mail_outline_outlined,
               title: StringConstant.emailText,
@@ -60,7 +65,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                         AutoRouter.of(context).push(RegisterRoute());
                       },
                       child: Text(
-                        " Sing Up",
+                        StringConstant.singUp,
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             color: blackPrimary, fontWeight: FontWeight.bold),
                       ),

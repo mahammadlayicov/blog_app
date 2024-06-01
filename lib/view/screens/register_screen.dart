@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/config/app_router.gr.dart';
+import 'package:news_app/config/contex_extension.dart';
 import 'package:news_app/constant/string_constant.dart';
 import 'package:news_app/view/widgets/button_widget.dart';
 import 'package:news_app/view/widgets/textfield_mail_widget.dart';
@@ -21,17 +22,18 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-          margin: EdgeInsets.symmetric(horizontal: 15),
+          margin: EdgeInsets.symmetric(horizontal: context.mediumValue),
           child: Column(
             children: [
               Expanded(
-                flex: 2,
+                flex: 3,
                 child: TwoTextWidget(
                     title: StringConstant.registerScreenTitle,
                     description: StringConstant.registerScreenDescription),
               ),
+              context.emptyWidgetHeight,
               Expanded(
-                flex: 3,
+                flex: 5,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:news_app/config/app_router.gr.dart';
+import 'package:news_app/config/contex_extension.dart';
 import 'package:news_app/constant/app_color.dart';
 import 'package:news_app/constant/string_constant.dart';
 import 'package:news_app/view/widgets/button_widget.dart';
@@ -23,9 +24,13 @@ class VerificationScreen extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           children: [
-            TwoTextWidget(
-                title: StringConstant.verificationScreenTitle,
-                description: StringConstant.verificationScreenDescription),
+            Expanded(
+              flex: 2,
+              child: TwoTextWidget(
+                  title: StringConstant.verificationScreenTitle,
+                  description: StringConstant.verificationScreenDescription),
+            ),
+            context.emptyWidgetHeight,
             Flexible(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -58,7 +63,7 @@ class VerificationScreen extends StatelessWidget {
                           .copyWith(color: blackLighter),
                     ),
                     Text(
-                      " Sing Up",
+                      StringConstant.singUp,
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: blackPrimary, fontWeight: FontWeight.bold),
                     )

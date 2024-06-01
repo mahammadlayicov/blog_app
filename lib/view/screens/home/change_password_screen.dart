@@ -7,6 +7,7 @@ import '../../../constant/app_color.dart';
 import '../../../constant/string_constant.dart';
 import '../../../provider/passwordTextfieldProvider.dart';
 import 'package:auto_route/auto_route.dart';
+
 @RoutePage()
 class ChangePasswordScreen extends StatelessWidget {
   const ChangePasswordScreen({super.key});
@@ -14,9 +15,13 @@ class ChangePasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {}, icon: Icon(color: greyPrimary, Icons.arrow_back)),
+            onPressed: () {
+              AutoRouter.of(context).maybePop();
+            },
+            icon: Icon(color: greyPrimary, Icons.arrow_back)),
         centerTitle: true,
         title: Text(
             style: TextStyle(fontWeight: FontWeight.w500), "Change Password"),

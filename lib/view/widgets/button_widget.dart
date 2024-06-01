@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/config/contex_extension.dart';
 
 import '../../constant/app_color.dart';
 
@@ -15,7 +16,7 @@ class ButtonWidget extends StatelessWidget {
       decoration: BoxDecoration(
           color: purplePrimary, borderRadius: BorderRadius.circular(15)),
       margin: EdgeInsets.symmetric(vertical: 30),
-      height: 56,
+      height: context.dynamicHeight(0.07),
       child: Center(
           child: Text(
         title,

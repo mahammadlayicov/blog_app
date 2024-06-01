@@ -5,11 +5,22 @@ import 'app_router.gr.dart';
 class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: ArticleRoute.page, path: '/article'),
-        AutoRoute(
-            page: CreateNewPasswordRoute.page, path: '/create-new-password'),
-        AutoRoute(page: FavoriteTopicsRoute.page, path: '/favorite-topics'),
-        AutoRoute(page: ForgotPasswordRoute.page, path: '/forgot-password'),
+        CustomRoute(
+            transitionsBuilder: TransitionsBuilders.slideRightWithFade,
+            page: ArticleRoute.page,
+            path: '/article'),
+        CustomRoute(
+            transitionsBuilder: TransitionsBuilders.slideLeft,
+            page: CreateNewPasswordRoute.page,
+            path: '/create-new-password'),
+        CustomRoute(
+            transitionsBuilder: TransitionsBuilders.slideLeft,
+            page: FavoriteTopicsRoute.page,
+            path: '/favorite-topics'),
+        CustomRoute(
+            transitionsBuilder: TransitionsBuilders.slideLeft,
+            page: ForgotPasswordRoute.page,
+            path: '/forgot-password'),
         AutoRoute(
           page: HomeRoute.page,
           path: '/home',
@@ -20,25 +31,37 @@ class AppRouter extends $AppRouter {
             AutoRoute(
               page: ProfileRoute.page,
               path: 'profile',
-              children: [
-                AutoRoute(page: LanguageRoute.page, path: 'language'),
-                AutoRoute(
-                    page: TermsConditionsRoute.page, path: 'terms-conditions'),
-                AutoRoute(
-                    page: ChangePasswordRoute.page, path: 'change-password'),
-              ],
             ),
           ],
         ),
+        CustomRoute(
+            transitionsBuilder: TransitionsBuilders.fadeIn,
+            page: LanguageRoute.page,
+            path: '/language'),
+        CustomRoute(
+            transitionsBuilder: TransitionsBuilders.slideLeft,
+            page: TermsConditionsRoute.page,
+            path: '/terms-conditions'),
+        CustomRoute(
+            transitionsBuilder: TransitionsBuilders.slideLeft,
+            page: ChangePasswordRoute.page,
+            path: '/change-password'),
         AutoRoute(page: LoginRoute.page, path: '/login'),
-        AutoRoute(
+        CustomRoute(
+          initial: true,
+          transitionsBuilder: TransitionsBuilders.fadeIn,
           page: OnboardingRoute.page,
           path: '/onboarding',
-          initial: true,
         ),
-        AutoRoute(page: RegisterRoute.page, path: '/register'),
+        CustomRoute(
+            transitionsBuilder: TransitionsBuilders.slideLeft,
+            page: RegisterRoute.page,
+            path: '/register'),
         AutoRoute(page: SplashRoute.page, path: '/splash'),
-        AutoRoute(page: VerificationRoute.page, path: '/verification'),
+        CustomRoute(
+            transitionsBuilder: TransitionsBuilders.fadeIn,
+            page: VerificationRoute.page,
+            path: '/verification'),
         AutoRoute(page: WelcomeRoute.page, path: '/welcome'),
       ];
 }

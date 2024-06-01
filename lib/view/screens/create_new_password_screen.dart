@@ -18,13 +18,18 @@ class CreateNewPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           children: [
-            TwoTextWidget(
-                title: StringConstant.createNewPasswordScreenTitle,
-                description: StringConstant.createNewPasswordScreenDescription),
+            Expanded(
+              flex: 2,
+              child: TwoTextWidget(
+                  title: StringConstant.createNewPasswordScreenTitle,
+                  description:
+                      StringConstant.createNewPasswordScreenDescription),
+            ),
             Expanded(
                 flex: 2,
                 child: Column(

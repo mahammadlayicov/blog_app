@@ -15,7 +15,10 @@ class LanguageScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {}, icon: Icon(color: greyPrimary, Icons.arrow_back)),
+            onPressed: () {
+                            AutoRouter.of(context).maybePop();
+
+            }, icon: Icon(color: greyPrimary, Icons.arrow_back)),
         centerTitle: true,
         title: Text(style: TextStyle(fontWeight: FontWeight.w500), "Language"),
       ),

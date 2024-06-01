@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/constant/app_color.dart';
 import 'package:auto_route/auto_route.dart';
+
 @RoutePage()
 class TermsConditionsScreen extends StatelessWidget {
   const TermsConditionsScreen({super.key});
@@ -10,7 +11,10 @@ class TermsConditionsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {}, icon: Icon(color: greyPrimary, Icons.arrow_back)),
+            onPressed: () {
+              AutoRouter.of(context).maybePop();
+            },
+            icon: Icon(color: greyPrimary, Icons.arrow_back)),
         centerTitle: true,
         title: Text(
             style: TextStyle(fontWeight: FontWeight.w500),

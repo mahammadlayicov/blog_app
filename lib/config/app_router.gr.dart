@@ -9,6 +9,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i19;
+import 'package:flutter/material.dart' as _i21;
+import 'package:news_app/models/blog_model.dart' as _i20;
 import 'package:news_app/view/screens/create_new_password_screen.dart' as _i5;
 import 'package:news_app/view/screens/favorite_topics_screen.dart' as _i6;
 import 'package:news_app/view/screens/forgot_password_screen.dart' as _i7;
@@ -35,9 +37,13 @@ abstract class $AppRouter extends _i19.RootStackRouter {
   @override
   final Map<String, _i19.PageFactory> pagesMap = {
     ArticleRoute.name: (routeData) {
+      final args = routeData.argsAs<ArticleRouteArgs>();
       return _i19.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.ArticleScreen(),
+        child: _i1.ArticleScreen(
+          blogModel: args.blogModel,
+          key: args.key,
+        ),
       );
     },
     BookmarksRoute.name: (routeData) {
@@ -147,16 +153,40 @@ abstract class $AppRouter extends _i19.RootStackRouter {
 
 /// generated route for
 /// [_i1.ArticleScreen]
-class ArticleRoute extends _i19.PageRouteInfo<void> {
-  const ArticleRoute({List<_i19.PageRouteInfo>? children})
-      : super(
+class ArticleRoute extends _i19.PageRouteInfo<ArticleRouteArgs> {
+  ArticleRoute({
+    required _i20.BlogModel blogModel,
+    _i21.Key? key,
+    List<_i19.PageRouteInfo>? children,
+  }) : super(
           ArticleRoute.name,
+          args: ArticleRouteArgs(
+            blogModel: blogModel,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ArticleRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i19.PageInfo<ArticleRouteArgs> page =
+      _i19.PageInfo<ArticleRouteArgs>(name);
+}
+
+class ArticleRouteArgs {
+  const ArticleRouteArgs({
+    required this.blogModel,
+    this.key,
+  });
+
+  final _i20.BlogModel blogModel;
+
+  final _i21.Key? key;
+
+  @override
+  String toString() {
+    return 'ArticleRouteArgs{blogModel: $blogModel, key: $key}';
+  }
 }
 
 /// generated route for

@@ -2,11 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import 'package:news_app/models/blog_model.dart';
+import 'package:provider/provider.dart';
 
+import '../../../provider/bookmark_provider.dart';
 
 @RoutePage()
 class ArticleScreen extends StatelessWidget {
-  const ArticleScreen({super.key});
+  BlogModel blogModel;
+  ArticleScreen({required this.blogModel, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,9 @@ class ArticleScreen extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {},
+          onPressed: () {
+            context.router.maybePop();
+          },
         ),
         actions: [
           IconButton(
@@ -28,8 +34,15 @@ class ArticleScreen extends StatelessWidget {
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.bookmark_border, color: Colors.white),
-            onPressed: () {},
+            icon: Icon(
+                Provider.of<BookmarksProvider>(context).isExist(blogModel)
+                    ? Icons.bookmark
+                    : Icons.bookmark_border_outlined,
+                color: Colors.white),
+            onPressed: () {
+              Provider.of<BookmarksProvider>(context, listen: false)
+                  .toggleBookmarks(blogModel);
+            },
           ),
         ],
       ),
@@ -39,7 +52,7 @@ class ArticleScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.6,
             width: double.infinity,
             child: Image.network(
-              'https://picsum.photos/800/600',
+              blogModel.imgPath,
               fit: BoxFit.cover,
             ),
           ),
@@ -57,7 +70,7 @@ class ArticleScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: Text(
-                    'US Election',
+                    blogModel.category,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -66,41 +79,15 @@ class ArticleScreen extends StatelessWidget {
                 ),
                 Gap(10),
                 Text(
-                  'The latest situation in the presidential election',
+                  blogModel.title,
                   style: TextStyle(
+                    shadows: [Shadow(blurRadius: 3, offset: Offset.infinite)],
                     color: Colors.white,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Gap(10),
-                Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage:
-                          NetworkImage('https://picsum.photos/200'),
-                    ),
-                    Gap(10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'John Doe',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          'Designer',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
@@ -132,7 +119,7 @@ class ArticleScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'Leads in individual states may change from one party to another as all the votes are counted. Select a state for detailed results, and select the Senate, House or Governor tabs to view those races.',
+                        blogModel.description,
                         style: TextStyle(
                           fontSize: 16,
                           height: 1.5,

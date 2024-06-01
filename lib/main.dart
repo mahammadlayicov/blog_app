@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/config/app_router.dart';
+import 'package:news_app/provider/bookmark_provider.dart';
 import 'package:news_app/provider/category_provider.dart';
 import 'package:news_app/provider/grid_provider.dart';
 import 'package:news_app/provider/language_provider.dart';
@@ -51,6 +52,9 @@ class MainApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (context) => GridProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => BookmarksProvider(),
           )
         ],
         child: MaterialApp.router(

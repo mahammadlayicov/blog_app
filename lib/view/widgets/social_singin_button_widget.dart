@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:news_app/config/contex_extension.dart';
 
 import '../../constant/app_color.dart';
+
 class SocialSignInButton extends StatelessWidget {
   final IconData icon;
   final String text;
@@ -26,7 +28,7 @@ class SocialSignInButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: 60,
+        height: context.dynamicHeight(0.07),
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(10),

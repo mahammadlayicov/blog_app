@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:news_app/config/app_router.gr.dart';
 import 'package:news_app/constant/app_color.dart';
+import 'package:news_app/view/screens/home/change_password_screen.dart';
 import 'package:news_app/view/screens/home/terms_conditions_screen.dart';
 
 import '../../widgets/profile_build_widget.dart';
@@ -38,22 +39,23 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 40,
+                          backgroundColor: whiteColor,
                           foregroundImage: NetworkImage(
-                              "https://picsum.photos/id/237/200/300"),
+                              "https://storage.googleapis.com/cms-storage-bucket/780e0e64d323aad2cdd5.png"),
                         ),
                         Gap(30),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Eren Turkmen",
+                              "Mahammad Layıcov",
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge!
                                   .copyWith(fontWeight: FontWeight.w400),
                             ),
                             Text(
-                              "ertuken@gmail.com",
+                              "mahammadlayicov@gmail.com",
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
@@ -80,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        AutoRouter.of(context).push(LanguageRoute());
+                        context.router.push(LanguageRoute());
                       },
                       child: ProfileBuildWodget(
                         widget: Icon(
@@ -92,7 +94,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        AutoRouter.of(context).push(LanguageRoute());
+                        AutoRouter.of(context).push(ChangePasswordRoute());
                       },
                       child: ProfileBuildWodget(
                         widget: Icon(
